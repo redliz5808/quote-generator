@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temp App</title>
+</head>
+<body>
+    <div id="result"></div>
+    <script>
+        const result = document.getElementById("result");
+        var input = "https://img1.wsimg.com/isteam/ip/4df0be85-2a9f-4d11-9af6-ad1e136e9f8f/ols/Black%20Hoodie.png;https://img1.wsimg.com/isteam/ip/4df0be85-2a9f-4d11-9af6-ad1e136e9f8f/ols/Navy%20Hoodie.png;https://img1.wsimg.com/isteam/ip/4df0be85-2a9f-4d11-9af6-ad1e136e9f8f/ols/Grey%20Hoodie.png;https://img1.wsimg.com/isteam/ip/4df0be85-2a9f-4d11-9af6-ad1e136e9f8f/ols/Powder%20Pnk%20Hoodie.png;https://img1.wsimg.com/isteam/ip/4df0be85-2a9f-4d11-9af6-ad1e136e9f8f/ols/Sand%20Hoodie.png";
+        var output = input.replaceAll(";",",");
+        var tempArray = output.split(",");
+        const list = document.createElement("ul");
+        for (let index = 0; index < tempArray.length; index++) {
+            const listItem = document.createElement("li");
+            listItem.id = `listItem-${index}`;
+            listItem.innerHTML = tempArray[index];
+            list.appendChild(listItem);
+        }
+        result.appendChild(list);
+    </script>
+</body>
+</html>

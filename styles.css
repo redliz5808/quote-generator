@@ -1,0 +1,210 @@
+:root {
+    --primary: #eb0350;
+    --primary-hover: #ff99bb;
+    --primary-dark: #a40037;
+    --primary-contrast: #fff;
+    --secondary: #c30eeb;
+    --accent: #78f083;
+    --accent-hover: #31a33c;
+    --primary-family: "Montserrat", sans-serif;
+    --secondary-family: "Rouge Script", cursive;
+    --primary-font: #000;
+    --secondary-font: #767779;
+}
+
+body * {
+    font-family: var(--primary-family);
+    font-size: 1rem;
+}
+
+.fa-solid,
+.fas {
+    color: var(--primary);
+}
+
+.fa-solid:hover,
+.fas:hover {
+    color: var(--primary-dark);
+}
+
+.tooltip-inner {
+    max-width: 350px;
+    width: fit-content !important;
+    text-align: left;
+    padding: 1rem;
+    background-color: var(--primary-dark);
+    color: var(--primary-contrast);
+    backdrop-filter: blur(10x);
+}
+
+.tooltip-inner ul {
+    padding-left: 0;
+}
+
+.tooltip-inner li {
+    margin-left: 25px;
+}
+
+.section {
+    border: 1px solid var(--secondary-font);
+    border-radius: 30px;
+    padding: 2rem;
+    margin: 1rem 0;
+}
+
+.title {
+    font-weight: 700;
+}
+
+.message {
+    font-weight: 700;
+    display: none;
+}
+
+.message.error {
+    color: #ff2222;
+    display: block;
+}
+
+.message.warning {
+    color: #d79300;
+    display: block;
+}
+
+#stitchCount,
+#designSize,
+#editingHours {
+    max-width: 105px;
+}
+
+#numOfColors {
+    max-width: 75px;
+}
+
+#projectInfo .form-check.form-switch {
+    display: flex;
+    align-items: center;
+}
+
+#projectInfo .qty-container {
+    display: none;
+    align-items: flex-end;
+}
+
+#projectInfo .other-container {
+    display: flex;
+    align-items: flex-end;
+}
+
+#projectInfo .qty-container.other-qty-container {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+#projectInfo .form-check.form-switch .form-check-label {
+    padding: 0.5rem 1rem 0.25rem 1rem;
+}
+
+#projectInfo .qty-container .fabric-qty-label {
+    min-width: fit-content;
+    margin-right: 1rem;
+}
+
+#projectInfo .qty-container.display,
+#projectInfo .qty-container.other-qty-container.display {
+    display: flex;
+}
+
+label[for="stitchCount"] {
+    padding: 6px 12px 12px 3px;
+}
+
+#results {
+    border: 10px solid var(--primary);
+    border-radius: 0;
+}
+
+#results .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#results .header.logo {
+    align-items: flex-start;
+}
+
+#results .header.logo img {
+    max-width: 200px;
+}
+
+#results .header.business-info {
+    align-items: flex-end;
+}
+
+#results .header.business-info a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
+#results .header.business-info a:hover {
+    color: var(--primary-dark);
+    text-decoration: none;
+}
+
+.title {
+    min-height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title .text {
+    position: relative;
+    border: 10px double var(--primary);
+    color: var(--primary);
+    font-size: 1.15rem;
+    font-weight: 600;
+}
+
+.title .text::before {
+    content: "";
+    position: absolute;
+    left: -16.5vw;
+    top: 50%;
+    transform: translateX(-50%);
+    border-top: 3px solid var(--primary);
+    border-bottom: 3px solid var(--primary);
+    width: 25vw;
+    height: 9px;
+}
+
+.title .text::after {
+    content: "";
+    position: absolute;
+    right: -42vw;
+    top: 50%;
+    transform: translateX(-50%);
+    border-top: 3px solid var(--primary);
+    border-bottom: 3px solid var(--primary);
+    width: 25vw;
+    height: 9px;
+}
+
+.grandTotalLine {
+    vertical-align: middle;
+}
+
+@media all and (max-width: 992px) {
+    #results .header.logo,
+    #results .header.business-info {
+        align-items: center;
+    }
+
+    .title .text::before,
+    .title .text::after {
+        display: none;
+    }
+}
