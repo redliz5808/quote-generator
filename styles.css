@@ -17,6 +17,10 @@ body * {
     font-size: 1rem;
 }
 
+.p-only {
+    display: none;
+}
+
 .fa-solid,
 .fas {
     color: var(--primary);
@@ -52,12 +56,17 @@ body * {
     margin: 1rem 0;
 }
 
+h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
 .title {
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .message {
-    font-weight: 700;
+    font-weight: 600;
     display: none;
 }
 
@@ -81,6 +90,11 @@ body * {
     max-width: 75px;
 }
 
+#projectInfo h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
 #projectInfo .form-check.form-switch {
     display: flex;
     align-items: center;
@@ -101,6 +115,11 @@ body * {
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+}
+
+#projectInfo .hint-text {
+    font-style: italic;
+    font-size: 0.88rem;
 }
 
 #projectInfo .form-check.form-switch .form-check-label {
@@ -155,10 +174,13 @@ label[for="stitchCount"] {
 }
 
 .title {
-    min-height: 100px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+}
+
+#results .title {
+    justify-content: center;
 }
 
 .title .text {
@@ -206,5 +228,28 @@ label[for="stitchCount"] {
     .title .text::before,
     .title .text::after {
         display: none;
+    }
+}
+
+@media print {
+    #results .header.logo {
+        align-items: flex-start;
+    }
+
+    #results .header.business-info {
+        align-items: flex-end;
+    }
+
+    .title .text::before,
+    .title .text::after {
+        display: block;
+    }
+
+    .p-none {
+        display: none;
+    }
+
+    .p-only {
+        display: block;
     }
 }
