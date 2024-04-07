@@ -69,16 +69,18 @@ const performance = document.getElementById("performance");
 const performanceQty = document.getElementById("performanceQty");
 const other = document.getElementById("other");
 const otherQty = document.getElementById("otherQty");
+let allFabricQtys = {};
 
 // ----- Personalization & Shipping ----- //
 const personalizationOne = document.getElementById("personalizationOne");
 const personalizationTwo = document.getElementById("personalizationTwo");
+const shippingSpeed = document.getElementById("projectSpeed");
 
 // ----- Estiamte Display ----- //
 const tableBody = document.getElementById("tableBody");
 // let allData = [];
 let allData = {};
-// let grandTotalArray = [];
+let grandTotalArray = [];
 
 // ----------------------------------------------------- //
 // -------------- FUNCTIONS TO GATHER DATA ------------- //
@@ -284,12 +286,13 @@ function calculateDigitizingFee() {
         digitizingFee = 100;
         // Please contact us for an accurate estimate
     }
+    return digitizingFee;
 }
 
 function calculateSingleFabricTotal(fabricQty, fabricUpcharge) {
     discount = fabricQty > 10 ? 0.15 : 0;
-    let fabricPricePerThousand = fabricUpcharge - (fabricUpcharge * discount);
-    let fabricTotal = formatter.format(fabricQty * fabricPricePerThousand);
+    let fabricPricePerThousand = fabricUpcharge - fabricUpcharge * discount;
+    let fabricTotal = fabricQty * fabricPricePerThousand;
     return fabricTotal;
 }
 
@@ -297,6 +300,7 @@ function calculateFabricTotals(fabric) {
     let fabricTotal = 0;
     let fabricId = fabric.getAttribute("id");
     let fabricQty = document.getElementById(`${fabricId}Qty`).value;
+    allFabricQtys[fabric.getAttribute("fmd-desc")] = fabricQty;
     let fabricUpcharge = fabric.getAttribute("fmd-prem");
     if (fabric.checked) {
         fabricTotal = calculateSingleFabricTotal(Number(fabricQty), Number(fabricUpcharge));
@@ -305,8 +309,9 @@ function calculateFabricTotals(fabric) {
 }
 
 function calculateColorCost(numberOfColors) {
-    if (numberOfColors >= 11 && numberOfColors <= 15) {
-        return (3 * numberOfColors);
+    var numberOfExtraColors = numberOfColors - 10;
+    if (numberOfExtraColors >= 1 && numberOfExtraColors <= 5) {
+        return 3 * numberOfExtraColors;
     }
     return 0;
 }
@@ -321,6 +326,8 @@ function calculateTotals() {
     }
     if (editingRequired.checked) {
         editCost = Number(numOfHours.value) * 25;
+        grandTotalArray.push(editCost);
+        allData["Design editing"] = formatter.format(editCost);
     }
     if (digitizingRequired.checked) {
         let digitizingFee = calculateDigitizingFee();
@@ -330,28 +337,86 @@ function calculateTotals() {
     let fabricTotals = [];
     let allFabricTotal = 0;
     for (const fabric of fabrics) {
-        if(fabric.checked) {
+        if (fabric.checked) {
             let fabricName = fabric.getAttribute("fmd-desc");
             let lineTotal = calculateFabricTotals(fabric);
             if (lineTotal > 0) {
-                allData[fabricName] = lineTotal;
+                fabricTotals.push(lineTotal);
+                allData[fabricName] = formatter.format(lineTotal);
             }
-            fabricTotals.push[lineTotal];
         }
         allFabricTotal = sum(fabricTotals);
     }
-    allData["Stitch cost"] = formatter.format(stitchCost);
     let costOfColors = 0;
     costOfColors = calculateColorCost(Number(numOfColors.value));
+
+    if (digitizingFee !== 0) {
+        grandTotalArray.push(digitizingFee);
+    }
+    if (stitchCost !== 0) {
+        grandTotalArray.push(stitchCost);
+        allData["Stitch cost"] = formatter.format(stitchCost);
+    }
     if (costOfColors !== 0) {
-        allData["Number of colors"] = formatter.format(costOfColors);
+        grandTotalArray.push(costOfColors);
+        if (costOfColors > 0) {
+            allData["Cost for additional colors"] = formatter.format(costOfColors);
+        } else {
+            allData["Number of colors"] = numOfColors.value;
+        }
     }
     if (allFabricTotal !== 0) {
-        allData["Total of all fabrics"] = formatter.format(allFabricTotal);
+        grandTotalArray.push(allFabricTotal);
+        // allData["Total of all fabrics"] = formatter.format(allFabricTotal);
     }
-    grandTotalArray = [stitchCost, editCost, costOfColors, digitizingFee, allFabricTotal];
+
+    let personalizationTotal = 0;
+
+    if (personalizationOne !== "" || personalizationTwo !== "") {
+        let lineOneCount = personalizationOne.value.length;
+        let lineTwoCount = personalizationTwo.value.length;
+        let lineOneOverage = 0;
+        let lineTwoOverage = 0;
+        if (lineOneCount < 16 && lineTwoCount < 16) {
+            personalizationTotal = 0;
+        } else {
+            if (lineOneCount > 15) {
+                lineOneOverage = lineOneCount - 15;
+            }
+            if (lineTwoCount > 15) {
+                lineTwoOverage = lineTwoCount - 15;
+            }
+            personalizationTotal = 4 + ((lineOneOverage + lineTwoOverage) * 0.3);
+            allData["Personalization Total"] = formatter.format(personalizationTotal);
+            grandTotalArray.push(personalizationTotal);
+        }
+    }
+
     let estimateTotal = sum(grandTotalArray);
     return estimateTotal;
+}
+
+function calculateShipping(subtotal) {
+    let shippingSpeedVal = shippingSpeed.options[shippingSpeed.selectedIndex].getAttribute("fmd-rate");
+    let grandTotal = 0;
+    if (shippingSpeedVal === 0) {
+        createPrintPreview(subtotal);
+    } else {
+        grandTotal = subtotal + subtotal * shippingSpeedVal;
+        createPrintPreview(grandTotal);
+    }
+}
+
+function calculateBagging(subtotal) {
+    let tempQtyArray = [];
+    for (const [key, value] of Object.entries(allFabricQtys)) {
+        tempQtyArray.push(Number(value));
+    }
+    let baggingTotal = sum(tempQtyArray) * 0.5;
+    allData["Folding & Polybagging"] = formatter.format(baggingTotal);
+    grandTotalArray.push(baggingTotal);
+    subtotal = subtotal + baggingTotal;
+    calculateShipping(subtotal);
 }
 
 function saveFormData() {
@@ -364,14 +429,39 @@ function saveFormData() {
         }
     });
     sessionStorage.setItem("Project Information", JSON.stringify(allData));
-    let grandTotal = calculateTotals();
-    createPrintPreview(grandTotal);
+    let subtotal = calculateTotals();
+    let polybagging = document.getElementById("polybag");
+    if (polybagging.checked) {
+        calculateBagging(subtotal);
+    } else {
+        calculateShipping(subtotal);
+    }
+}
+
+function clearTotals() {
+    allData = {};
+    grandTotalArray = [];
 }
 
 calculateBtn.addEventListener("click", (e) => {
+    clearTotals();
     e.preventDefault();
     saveFormData();
 });
+
+// ----------------------------------------------------- //
+// ------------- FUNCTIONS TO CONTROL FORM ------------- //
+// ----------------------------------------------------- //
+
+const resetBtn = document.getElementById("resetBtn");
+
+function resetForm() {
+    location.reload();
+}
+
+resetBtn.addEventListener("click", () => {
+    resetForm();
+})
 
 // On Submit: https://wordpress.stackexchange.com/questions/283965/how-do-i-send-mail-with-custom-form-data-using-wordpress
 // Send without converting: https://stackoverflow.com/questions/41431322/how-to-convert-formdata-html5-object-to-json

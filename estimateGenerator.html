@@ -15,37 +15,54 @@
         <style></style>
     </head>
     <body>
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
-                <div class="col-12">
-                    <h2 class="text-center">Fire Made Designs Embroidery Project Estimate Generator</h2>
-                    <p>Please use the form fields below to generate an estimate for the approximate cost of your project.</p>
+                <div class="col-12 p-none">
+                    <h2 class="text-center mb-3">Embroidery Project Estimate Generator</h2>
+                    <p class="p-none">Please use the form fields below to generate an estimate for the approximate cost of your project.</p>
                     <p><strong>Please note: </strong>Any cost provided by this generator is an estimate and is not guaranteed to be the final cost of the project. Once the estimate is generator, you will have the option to send the project information to <a href="mailto:info@firemadedesigns.com">info@firemadedesigns.com</a>. Someone will then contact you if more detail is required and to confirm any changes to the estimated cost.</p>
                 </div>
-                <form id="projectInfo">
+                <div class="p-only col-12">
+                    <p><strong>Please note: </strong>Any cost provided by this generator is an estimate and is not guaranteed to be the final cost of the project. Once the estimate is generator, you will have the option to send the project information to <a href="mailto:info@firemadedesigns.com">info@firemadedesigns.com</a>. Someone will then contact you if more detail is required and to confirm any changes to the estimated cost.</p>
+                    <h2 class="text-center mb-3">Embroidery Project Estimate Generator</h2>
+                </div>
+                <form id="projectInfo" class="p-none">
                     <!--method="post" enctype="text/html; charset=utf-8"-->
-                    <h3>Embroidery Item #1</h3>
-                    <div class="row section">
+                    <div id="projectDesign" class="row section">
                         <h4>Design Information</h4>
-                        <div class="col-6 col-lg-4 p-3">
-                            <p class="title">
-                                Will apparel be customer-provided?
-                                <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="<ul>Price per thousand stitches:<li>$1.25 - Customer-Provided Apparel</li><li>$1.00 - Fire Made Designs-Provided Apparel</li></ul>">
-                                    <i class="fa-solid fa-circle-question"></i>
-                                </button>
-                            </p>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input formfield unique" type="radio" name="customerProvided" id="customerProvidedYes" value="Yes" />
-                                <label class="form-check-label" for="customerProvidedYes">Yes</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input formfield unique" type="radio" name="customerProvided" id="customerProvidedNo" value="No" />
-                                <label class="form-check-label" for="customerProvidedNo">No</label>
+                        <div class="col-6 col-lg-7 p-3">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="title mb-0">
+                                        Will apparel be customer-provided?
+                                        <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="<ul>Price per thousand stitches:<li>$1.25 - Customer-Provided Apparel</li><li>$1.00 - Fire Made Designs-Provided Apparel</li></ul>">
+                                            <i class="fa-solid fa-circle-question"></i>
+                                        </button>
+                                    </p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input formfield unique" type="radio" name="customerProvided" id="customerProvidedYes" value="Yes" />
+                                        <label class="form-check-label" for="customerProvidedYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input formfield unique" type="radio" name="customerProvided" id="customerProvidedNo" value="No" />
+                                        <label class="form-check-label" for="customerProvidedNo">No</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label title" for="numOfColors" class="title"
+                                        >Number of Colors in the Design
+                                        <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="Up to 10 colors will be included for free. If more than 10 colors are needed, $3.00 will be added <strong>for each additional color</strong> above 10 with a max of 15.">
+                                            <i class="fa-solid fa-circle-question"></i>
+                                        </button>
+                                    </label>
+                                    <input class="form-control formfield" type="number" name="numOfColors" fmd-desc="Number of colors" id="numOfColors" min="1" max="15" placeholder="5" />
+                                    <div id="numOfColorsMessage" class="col-12 message"></div>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-6 col-lg-6 p-3">
+                        <div class="col-6 col-lg-5 p-3">
                             <div class="stitch-count">
-                                <p class="title">
+                                <p class="title mb-0">
                                     Design Stitch Count
                                     <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title='<p><strong>Converting from inches to stitch count or stitch count to inches is only an estimate</strong>.</p><p>The higher density the logo, the higher the stitch count. The final cost may differ from the estimated cost.</p><p>A minimum of 10,000 stitches (equivalent of 4.5") will be charged. We are able to embroider a maximum of 14".</p><p><strong>Note: Stitch counts are rounded <em>UP</em> to the nearest thousand.</strong></p>'>
                                         <i class="fa-solid fa-circle-question"></i>
@@ -74,7 +91,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-6 col-lg-2 p-3">
+                        <!-- <div class="col-6 col-lg-4 p-3">
                             <label class="form-label title" for="numOfColors" class="title"
                                 >Number of Colors in the Design
                                 <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="Up to 10 colors will be included for free. If more than 10 colors are needed, $3.00 will be added <strong>for each additional color</strong> above 10 with a max of 15.">
@@ -83,7 +100,7 @@
                             </label>
                             <input class="form-control formfield" type="number" name="numOfColors" fmd-desc="Number of colors" id="numOfColors" min="1" max="15" placeholder="5" />
                             <div id="numOfColorsMessage" class="col-12 message"></div>
-                        </div>
+                        </div> -->
                         <div class="col-6 col-lg-4 p-3">
                             <p class="title">
                                 Is digitizing required?
@@ -112,11 +129,11 @@
                             </div>
                             <div class="hrsContainer">
                                 <label class="form-label fabricQtyLabel" for="editingHours">Please estimate the number of hours required based on the editing needs.</label>
-                                <input class="form-control formfield" type="number" name="editingHours" fmd-desc="Design editing (hourly)" id="editingHours" step="0.25" min="1.00" placeholder="1.00" />
+                                <input class="form-control formfield" type="number" name="editingHours" fmd-desc="Design editing" id="editingHours" step="0.25" min="1.00" placeholder="1.00" />
                             </div>
                         </div>
                     </div>
-                    <div class="row section">
+                    <div id="customization" class="row section">
                         <div class="col-6 p-3">
                             <h4>Item Customization</h4>
                             <h5>
@@ -128,7 +145,7 @@
                             <p>Note: Fabrics denoted by the crown symbol (<i class="fa-solid fa-crown"></i>) are premium fabrics and require an upcharge which can be seen by hovering over the crown.</p>
                             <div id="cottonContainer" class="material">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input formfield fabric" type="checkbox" fmd-desc="Cotton" fmd-prem="0" role="switch" name="cotton" id="cotton" />
+                                    <input id="cotton" class="form-check-input formfield fabric" type="checkbox" fmd-desc="Cotton" fmd-prem="0" role="switch" name="cotton" />
                                     <label class="form-check-label" for="cotton">Cotton and/or cotton/polyester blend</label>
                                 </div>
                                 <div id="cottonQtyContainer" class="qty-container">
@@ -138,8 +155,12 @@
                             </div>
                             <div id="fleeceContainer" class="material">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input formfield fabric" type="checkbox" fmd-desc="Fleece" fmd-prem="0.25" role="switch" name="fleece" id="fleece" />
-                                    <label class="form-check-label" for="fleece">Fleece</label>
+                                    <input id="fleece" class="form-check-input formfield fabric" type="checkbox" fmd-desc='Fleece (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="fleece" />
+                                    <label class="form-check-label" for="fleece">Fleece
+                                        <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="$0.25 per thousand stitches">
+                                            <i class="fa-solid fa-crown"></i>
+                                        </button>
+                                    </label>
                                 </div>
                                 <div id="fleeceQtyContainer" class="qty-container">
                                     <label class="form-label fabric-qty-label" for="fleeceQty">Quantity Needed:</label>
@@ -148,7 +169,7 @@
                             </div>
                             <div id="towelsContainer" class="material">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input formfield fabric" type="checkbox" fmd-desc='Towels (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="towels" id="towels" />
+                                    <input id="towels" class="form-check-input formfield fabric" type="checkbox" fmd-desc='Towels (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="towels" />
                                     <label class="form-check-label" for="towels"
                                         >Towels/Blankets
                                         <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="$0.25 per thousand stitches">
@@ -163,7 +184,7 @@
                             </div>
                             <div id="bagsContainer" class="material">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input formfield fabric" type="checkbox" fmd-desc='Bags (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="bags" id="bags" />
+                                    <input id="bags" class="form-check-input formfield fabric" type="checkbox" fmd-desc='Bags (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="bags" />
                                     <label class="form-check-label" for="bags"
                                         >Bags
                                         <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="$0.25 per thousand stitches">
@@ -178,7 +199,7 @@
                             </div>
                             <div id="sherpaContainer" class="material">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input formfield fabric" type="checkbox" fmd-desc='Sherpa (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="sherpa" id="sherpa" />
+                                    <input id="sherpa" class="form-check-input formfield fabric" type="checkbox" fmd-desc='Sherpa (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="sherpa" />
                                     <label class="form-check-label" for="sherpa"
                                         >Sherpa
                                         <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="$0.25 per thousand stitches">
@@ -193,7 +214,7 @@
                             </div>
                             <div id="jacketsContainer" class="material">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input formfield fabric" type="checkbox" fmd-desc='Jackets (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="jackets" id="jackets" />
+                                    <input id="jackets" class="form-check-input formfield fabric" type="checkbox" fmd-desc='Jackets (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="jackets" />
                                     <label class="form-check-label" for="jackets"
                                         >Jackets
                                         <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="$0.25 per thousand stitches">
@@ -208,7 +229,7 @@
                             </div>
                             <div id="leatherContainer" class="material">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input formfield fabric" type="checkbox" fmd-desc='Leather (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.5" role="switch" name="leather" id="leather" />
+                                    <input id="leather" class="form-check-input formfield fabric" type="checkbox" fmd-desc='Leather (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.5" role="switch" name="leather" />
                                     <label class="form-check-label" for="leather"
                                         >Leather
                                         <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="$0.50 per thousand stitches">
@@ -223,7 +244,7 @@
                             </div>
                             <div id="capsContainer" class="material">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input formfield fabric" type="checkbox" fmd-desc='Caps (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="caps" id="caps" />
+                                    <input id="caps" class="form-check-input formfield fabric" type="checkbox" fmd-desc='Caps (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="caps" />
                                     <label class="form-check-label" for="caps"
                                         >Caps/Visors
                                         <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="$0.25 per thousand stitches">
@@ -238,7 +259,7 @@
                             </div>
                             <div id="performanceContainer" class="material">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input formfield fabric" type="checkbox" fmd-desc='Performance (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="performance" id="performance" />
+                                    <input id="performance" class="form-check-input formfield fabric" type="checkbox" fmd-desc='Performance (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="performance" />
                                     <label class="form-check-label" for="performance"
                                         >Performance Fabrics
                                         <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="$0.25 per thousand stitches">
@@ -253,18 +274,17 @@
                             </div>
                             <div id="otherContainer" class="material">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input formfield fabric" type="checkbox" fmd-desc='Other (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="other" id="other" />
+                                    <input id="other" class="form-check-input formfield fabric" type="checkbox" fmd-desc='Other (<i class="fa-solid fa-crown"></i>)' fmd-prem="0.25" role="switch" name="other" />
                                     <label class="form-check-label" for="other"
-                                        >Other<span>
-                                            (please describe the item's fabric in the space provided)
-                                            <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title='Unfortunately, we cannot provide an estimate for unknown fabrics. Please complete the questions on the estimate generator, then click the "Submit to Fire Made Designs" button and someone will contact you.'>
+                                        >Other
+                                            <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title='Unfortunately, we cannot provide an accurate estimate for unknown fabrics. Please complete the questions on the estimate generator, then click the "Submit" button and someone will contact you.'>
                                                 <i class="fa-solid fa-crown"></i>
                                             </button>
-                                        </span>
                                     </label>
                                 </div>
                                 <div id="otherQtyContainer" class="qty-container other-qty-container">
-                                    <textarea class="fabric-qty-label mb-3" name="otherDescription" id="otherDescription" fmd-prem="0.25" cols="60" rows="10"></textarea><br />
+                                    <p class="hint-text">(please describe the item's fabric in the space provided)</p>
+                                    <textarea class="fabric-qty-label mb-3" name="otherDescription" id="otherDescription" fmd-prem="2.00" cols="40" rows="7"></textarea><br />
                                     <div class="other-container">
                                         <label class="form-label fabric-qty-label" for="otherQty">Quantity Needed:</label>
                                         <input class="form-control formfield qty" type="number" name="otherQty" id="otherQty" min="0" placeholder="10" />
@@ -294,7 +314,7 @@
                             <div class="packaging-container p-3">
                                 <h5>Packaging and Project Speed Options</h5>
                                 <div class="py-2 form-check form-switch">
-                                    <input class="form-check-input formfield" type="checkbox" fmd-desc="Individual Folding & Polybagging" role="switch" name="polybag" id="polybag" />
+                                    <input id="polybag" class="form-check-input formfield" type="checkbox" fmd-desc="Individual Folding & Polybagging" role="switch" name="polybag" />
                                     <label class="form-check-label" for="polybag"
                                         >Individual Folding & Polybagging
                                         <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="$0.50 per item">
@@ -305,73 +325,69 @@
                                 <div class="py-2">
                                     <label for="projectSpeed">Item(s) needed within:</label>
                                     <select id="projectSpeed" class="form-select formfield unique" fmd-desc="Requested speed">
-                                        <option value="standard">Standard: 7 - 10 Business Days (no fee)</option>
-                                        <option value="rush">Rush: 5-6 Business Days (20% fee applied to order total)</option>
-                                        <option value="priority">Priority: 3-4 Business Days (30% fee applied to order total)</option>
-                                        <option value="expedited">Expedited: 2 Business Days (50% fee applied to order total)</option>
-                                        <option value="immediate">Immediate: 1 Business Day (100% fee applied to order total)</option>
+                                        <option value="Standard" fmd-rate="0">Standard: 7 - 10 Business Days (no fee)</option>
+                                        <option value="Rush" fmd-rate="0.2">Rush: 5-6 Business Days (20% fee applied to order total)</option>
+                                        <option value="Priority" fmd-rate="0.3">Priority: 3-4 Business Days (30% fee applied to order total)</option>
+                                        <option value="Expedited" fmd-rate="0.5">Expedited: 2 Business Days (50% fee applied to order total)</option>
+                                        <option value="Immediate" fmd-rate="1">Immediate: 1 Business Day (100% fee applied to order total)</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="calculation-container p-3">
                                 <button id="calculate" class="btn btn-info" type="button">Calculate</button>
-                                <button id="reset" class="btn btn-info" type="button">Reset Entire Form</button>
+                                <button id="resetBtn" class="btn btn-info" type="button">Reset Entire Form</button>
                             </div>
                         </div>
-                    </div>
-                    <div id="results" class="col-12 section">
-                        <div class="row">
-                            <div class="col-12 col-md-6 header logo mt-3 mb-5 my-md-0">
-                                <img src="https://i0.wp.com/firemadedesigns.com/wp-content/uploads/2022/05/FMDLogo_wide.png?fit=1781%2C1030&ssl=1" alt="Fire Made Designs LLC" />
-                            </div>
-                            <div class="col-12 col-md-6 header business-info">
-                                <p class="m-0">Fire Made Designs LLC</p>
-                                <p class="m-0">224 Charles Avenue</p>
-                                <p class="m-0">Boardman, Ohio 44512</p>
-                                <a href="tel:+13304069831">(330) 406-9831</a>
-                                <a href="mailto:info@firemadedesigns.com">info@firemadedesigns.com</a>
-                            </div>
-                            <div class="col-12 title my-5">
-                                <p class="text m-0 py-4 px-5">ESTIMATE</p>
-                            </div>
-                            <div class="col-12" id="estimateRefs">
-                                <p class="m-0"><strong>Estimate generated on: </strong><span id="todaysDate"></span></p>
-                                <p class="m-0"><strong>Estimate generated on: </strong><span id="expirationDate"></span></p>
-                                <p class="m-0"><strong>Reference Number: </strong><span id="estimateRefNumber"></span></p>
-                                <p class="m-0 grandTotalLine">
-                                    <strong>Total: </strong><span id="estimateGrandTotal"></span>
-                                    <button type="button" class="btn tooltips" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="Estimate total does not include federal, state, and/or applicable taxes. Final order total may differ from estimate total.">
-                                        <i class="fa-solid fa-circle-question"></i>
-                                    </button>
-                                </p>
-                            </div>
-                            <div class="col-12 results-table">
-                                <table class="table">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col">Service</th>
-                                            <th scope="col">Cost</th>
-                                            <th scope="col">Qty (if applicable)</th>
-                                            <th scope="col">Line Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody id="tableBody">
-                                        <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 section">
-                        <h5>Would you like to submit a copy of this estimate to Fire Made Designs for a FREE in-depth estimate?</h5>
-                        <button id="submit" class="btn btn-info" type="button">Submit</button>
                     </div>
                 </form>
+                <div id="results" class="col-12 section">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 header logo mt-3 mb-5 my-sm-0">
+                            <img src="https://i0.wp.com/firemadedesigns.com/wp-content/uploads/2022/05/FMDLogo_wide.png?fit=1781%2C1030&ssl=1" alt="Fire Made Designs LLC" />
+                        </div>
+                        <div class="col-12 col-sm-6 header business-info">
+                            <p class="m-0">Fire Made Designs LLC</p>
+                            <p class="m-0">224 Charles Avenue</p>
+                            <p class="m-0">Boardman, Ohio 44512</p>
+                            <a href="tel:+13304069831">(330) 406-9831</a>
+                            <a href="mailto:info@firemadedesigns.com">info@firemadedesigns.com</a>
+                        </div>
+                        <div class="col-12 title my-5">
+                            <p class="text m-0 py-4 px-5">ESTIMATE</p>
+                        </div>
+                        <div class="col-12" id="estimateRefs">
+                            <p class="m-0"><strong>Estimate generated on: </strong><span id="todaysDate"></span></p>
+                            <p class="m-0"><strong>Estimate generated on: </strong><span id="expirationDate"></span></p>
+                            <p class="m-0"><strong>Reference Number: </strong><span id="estimateRefNumber"></span></p>
+                            <p class="m-0 grandTotalLine">
+                                <strong>Total: </strong><span id="estimateGrandTotal"></span>
+                                <button type="button" class="btn tooltips" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="Estimate total does not include federal, state, and/or applicable taxes. Final order total may differ from estimate total.">
+                                    <i class="fa-solid fa-circle-question"></i>
+                                </button>
+                            </p>
+                        </div>
+                        <div class="col-12 results-table">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Service</th>
+                                        <th scope="col">Cost</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="tableBody">
+                                    <tr>
+                                        <th scope="row">Digitizing</th>
+                                        <td>$30.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 section p-none">
+                    <h5>Would you like to submit a copy of this estimate to Fire Made Designs for a FREE in-depth estimate?</h5>
+                    <button id="submit" class="btn btn-info" type="button">Submit</button>
+                </div>
             </div>
         </div>
 
