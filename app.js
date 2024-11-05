@@ -234,7 +234,9 @@ function createPrintPreview(estimateTotal) {
     document.getElementById("todaysDate").innerHTML = todaysDate.toLocaleDateString();
     let expirationDate = new Date(todaysDate.setDate(todaysDate.getDate() + 30)).toLocaleDateString();
     document.getElementById("expirationDate").innerHTML = expirationDate;
-    document.getElementById("estimateRefNumber").innerHTML = Math.random().toString(26).toUpperCase().slice(2);
+    let refNumber = Math.random().toString(26).toUpperCase().slice(2);
+    document.getElementById("estimateRefNumber").innerHTML = refNumber;
+    forExport["refNumber"] = refNumber;
     document.getElementById("estimateGrandTotal").innerHTML = formatter.format(estimateTotal);
 
     let dataToDisplay = Object.entries(allData);
@@ -256,7 +258,7 @@ function sum(array) {
 function calculateDigitizingFee() {
     let designSizeVal = Number(designSize.value);
     if (designSizeVal <= 10) {
-        digitizingFee = 30;
+        digitizingFee = 25;
     } else if (designSizeVal > 10) {
         digitizingFee = 100;
         // Please contact us for an accurate estimate
@@ -265,8 +267,10 @@ function calculateDigitizingFee() {
 }
 
 function calculateSingleFabricTotal(fabricQty, fabricUpcharge) {
-    discount = fabricQty > 10 ? 0.15 : 0;
-    let fabricPricePerThousand = fabricUpcharge - fabricUpcharge * discount;
+    discount = fabricQty >= 10 ? -0.15 : 0;
+    console.log({discount}, {fabricUpcharge})
+    let fabricPricePerThousand = fabricUpcharge === 0 ? discount : fabricUpcharge - (fabricUpcharge * discount);
+    console.log({fabricPricePerThousand})
     let fabricTotal = fabricQty * fabricPricePerThousand;
     return fabricTotal;
 }
@@ -278,6 +282,7 @@ function calculateFabricTotals(fabric, fabricQty) {
     if (fabric.checked) {
         fabricTotal = calculateSingleFabricTotal(Number(fabricQty), Number(fabricUpcharge));
     }
+    console.log({fabricTotal})
     return fabricTotal;
 }
 
@@ -290,7 +295,7 @@ function calculateColorCost(numberOfColors) {
 }
 
 function calculateTotals() {
-    pricePerThousand = customerProvided.checked ? 1.25 : 1;
+    pricePerThousand = customerProvided.checked ? 2 : 1.5;
     let stitchCost = 0;
     if (allData["Total stitches"] !== undefined) {
         stitchCost = pricePerThousand * (Number(allData["Total stitches"]) / 1000);
@@ -321,7 +326,7 @@ function calculateTotals() {
             totalItems = totalItems + Number(fabricQty);
             let fabricName = fabric.getAttribute("fmd-desc");
             let lineTotal = calculateFabricTotals(fabric, fabricQty);
-            if (lineTotal > 0) {
+            if (lineTotal !== 0) {
                 fabricTotals.push(lineTotal);
                 allData[fabricName] = formatter.format(lineTotal);
                 forExport[fabricId] = lineTotal;
