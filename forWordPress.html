@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Fire Made Designs Estimate Generator</title>
+        <link rel="shortcut icon" href="/assets/favicon.png" type="image/x-icon" />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD"
+            crossorigin="anonymous"
+        />
+        <script src="https://kit.fontawesome.com/7f3292fb04.js" crossorigin="anonymous"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,800;1,400;1,600;1,800&family=Rouge+Script&display=swap" rel="stylesheet" />
+        <link rel="stylesheet" href="styles.css" />
+        <style></style>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="text-center mb-3">Embroidery Project Estimate Generator</h2>
+                    <p class="p-none">Please use the form fields below to generate an estimate for the approximate cost of your project.</p>
+                    <p class="p-none">
+                        <strong>Please note: </strong>Any cost provided by this generator is an estimate and is not guaranteed to be the final cost of the project. Once the
+                        estimate is generated, you will have the option to send the project information to <a href="mailto:info@firemadedesigns.com">info@firemadedesigns.com</a>.
+                        Someone will then contact you if more detail is required and to confirm any changes to the estimated cost.
+                    </p>
+                </div>
+                <!-- <div class="p-only col-12">
+                    <p><strong>Please note: </strong>Any cost provided by this generator is an estimate and is not guaranteed to be the final cost of the project. Once the estimate is generator, you will have the option to send the project information to <a href="mailto:info@firemadedesigns.com">info@firemadedesigns.com</a>. Someone will then contact you if more detail is required and to confirm any changes to the estimated cost.</p>
+                    <h2 class="text-center mb-3">Embroidery Project Estimate Generator</h2>
+                </div> -->
+                <form id="projectInfo" method="POST">
+                    <!--method="post" enctype="text/html; charset=utf-8"-->
+                    <div id="projectDesign" class="row section p-none">
+                        <h4>Design Information</h4>
+                        <div class="col-6 col-lg-7 p-3">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="title mb-0">
+                                        Will apparel be customer-provided?
+                                        <button
+                                            type="button"
+                                            class="btn"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-html="true"
+                                            data-bs-title="<ul>Price per thousand stitches:<li>$1.25 - Customer-Provided Apparel</li><li>$1.00 - Fire Made Designs-Provided Apparel</li></ul>"
+                                        >
+                                            <i class="fa-solid fa-circle-question"></i>
+                                        </button>
+                                    </p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input formfield unique" type="radio" name="customerProvided" id="customerProvidedYes" value="Yes" />
+                                        <label class="form-check-label" for="customerProvidedYes">Yes</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input formfield unique" type="radio" name="customerProvided" id="customerProvidedNo" value="No" />
+                                        <label class="form-check-label" for="customerProvidedNo">No</label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label title" for="numOfColors" class="title"
+                                        >Number of Colors in the Design
+                                        <button
+                                            type="button"
+                                            class="btn"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-html="true"
+                                            data-bs-title="Up to 10 colors will be included for free. If more than 10 colors are needed, $3.00 will be added <strong>for each additional color</strong> above 10 with a max of 15."
+                                        >
+                                            <i class="fa-solid fa-circle-question"></i>
+                                        </button>
+                                    </label>
+                                    <input
+                                        class="form-control formfield"
+                                        type="number"
+                                        name="numOfColors"
+                                        fmd-desc="Number of colors"
+                                        id="numOfColors"
+                                        min="1"
+                                        max="15"
+                                        placeholder="5"
+                                    />
+                                    <div id="numOfColorsMessage" class="col-12 message"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-5 p-3">
+                            <div class="stitch-count">
+                                <p class="title mb-0">
+                                    Design Stitch Count
+                                    <button
+                                        type="button"
+                                        class="btn"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="top"
+                                        data-bs-html="true"
+                                        data-bs-title='<p><strong>Converting from inches to stitch count or stitch count to inches is only an estimate</strong>.</p><p>The higher density the logo, the higher the stitch count. The final cost may differ from the estimated cost.</p><p>A minimum of 10,000 stitches (equivalent of 4.5") will be charged. We are able to embroider a maximum of 14".</p><p><strong>Note: Stitch counts are rounded <em>UP</em> to the nearest thousand.</strong></p>'
+                                    >
+                                        <i class="fa-solid fa-circle-question"></i>
+                                    </button>
+                                </p>
+                                <div class="row">
+                                    <div class="col-auto d-flex justify-content-start align-items-end w-100">
+                                        <div class="d-flex flex-column justify-content-center align-items-start">
+                                            <label class="form-label" for="stitchCount">Estimated Stitch Count</label>
+                                            <input
+                                                class="form-control formfield unique"
+                                                type="number"
+                                                name="stitchCount"
+                                                fmd-desc="Total stitches"
+                                                id="stitchCount"
+                                                min="10000"
+                                                placeholder="10000"
+                                            />
+                                        </div>
+                                        <div class="d-flex align-items-center px-3 pb-2">
+                                            <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                                        </div>
+                                        <div class="d-flex flex-column justify-content-center align-items-start">
+                                            <label class="form-label" for="designSize"
+                                                >Design Size
+                                                <button
+                                                    type="button"
+                                                    class="btn"
+                                                    data-bs-toggle="tooltip"
+                                                    data-bs-placement="top"
+                                                    data-bs-html="true"
+                                                    data-bs-title="Longest side (in inches)."
+                                                >
+                                                    <i class="fa-solid fa-circle-question"></i>
+                                                </button>
+                                            </label>
+                                            <input
+                                                class="form-control formfield unique"
+                                                type="number"
+                                                name="designSize"
+                                                id="designSize"
+                                                min="4.50"
+                                                max="14.00"
+                                                placeholder="4.50"
+                                            />
+                                        </div>
+                                    </div>
+                                    <div id="stitchCountMessage" class="col-12 message"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="col-6 col-lg-4 p-3">
+                            <label class="form-label title" for="numOfColors" class="title"
+                                >Number of Colors in the Design
+                                <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="Up to 10 colors will be included for free. If more than 10 colors are needed, $3.00 will be added <strong>for each additional color</strong> above 10 with a max of 15.">
+                                    <i class="fa-solid fa-circle-question"></i>
+                                </button>
+                            </label>
+                            <input class="form-control formfield" type="number" name="numOfColors" fmd-desc="Number of colors" id="numOfColors" min="1" max="15" placeholder="5" />
+                            <div id="numOfColorsMessage" class="col-12 message"></div>
+                        </div> -->
+                        <div class="col-6 col-lg-4 p-3">
+                            <p class="title">
+                                Is digitizing required?
+                                <button
+                                    type="button"
+                                    class="btn"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    data-bs-html="true"
+                                    data-bs-title="<p>Digitizing is the process of converting an image into the proper format for use in embroidery.</p><p><strong>Note: The prices displayed in this quote generator are for basic designs only.</strong> If your design includes fine detail (such as with realistic photographs), please contact us for more accurate pricing.</p><p>If you are a <strong>new customer</strong>, any image you provide to us will need digitized.</p><p>If you are an <strong>existing customer</strong> and we have previously used the requested design, you will not need to have your image digitized.</p>"
+                                >
+                                    <i class="fa-solid fa-circle-question"></i>
+                                </button>
+                            </p>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input formfield" type="radio" name="digitizing" id="digitizingYes" value="Yes" />
+                                <label class="form-check-label" for="digitizingYes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input formfield" type="radio" name="digitizing" id="digitizingNo" value="No" />
+                                <label class="form-check-label" for="digitizingNo">No (Reorder)</label>
+                            </div>
+                        </div>
+                        <div class="col-6 col-lg-8 p-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input formfield" type="checkbox" role="switch" name="editingNeeded" id="editingNeeded" />
+                                <label class="form-check-label" for="editingNeeded"
+                                    >Does your design require any editing?
+                                    <button
+                                        type="button"
+                                        class="btn"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="top"
+                                        data-bs-html="true"
+                                        data-bs-title="Some examples of editing include: image background removal, converting from low quality to high quality, and/or adding text.<br /><strong>A minimum of 1 hour will be charged for any design editing.</strong>"
+                                    >
+                                        <i class="fa-solid fa-circle-question"></i>
+                                    </button>
+                                </label>
+                            </div>
+                            <div class="hrsContainer">
+                                <label class="form-label fabricQtyLabel" for="editingHours">Please estimate the number of hours required based on the editing needs.</label>
+                                <input
+                                    class="form-control formfield"
+                                    type="number"
+                                    name="editingHours"
+                                    fmd-desc="Design editing"
+                                    id="editingHours"
+                                    step="0.25"
+                                    min="1.00"
+                                    placeholder="1.00"
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div id="customization" class="row section p-none">
+                        <div class="col-6 p-3">
+                            <h4>Item Customization</h4>
+                            <h5>
+                                Materials and Quantity Needed
+                                <button
+                                    type="button"
+                                    class="btn"
+                                    data-bs-toggle="tooltip"
+                                    data-bs-placement="top"
+                                    data-bs-html="true"
+                                    data-bs-title="Purchasing <strong>10 or more items of the same material</strong> with qualify that set of items for a <strong>15% discount!</strong>"
+                                >
+                                    <i class="fa-solid fa-circle-question"></i>
+                                </button>
+                            </h5>
+                            <p>
+                                Note: Fabrics denoted by the crown symbol (<i class="fa-solid fa-crown"></i>) are premium fabrics and require an upcharge which can be seen by
+                                hovering over the crown.
+                            </p>
+                            <div id="cottonContainer" class="material">
+                                <div class="form-check form-switch">
+                                    <input id="cotton" class="form-check-input formfield fabric" type="checkbox" fmd-desc="Cotton" fmd-prem="0" role="switch" name="cotton" />
+                                    <label class="form-check-label" for="cotton">Cotton and/or cotton/polyester blend</label>
+                                </div>
+                                <div id="cottonQtyContainer" class="qty-container">
+                                    <label class="form-label fabric-qty-label" for="cottonQty">Quantity Needed:</label>
+                                    <input class="form-control formfield qty" type="number" name="cottonQty" id="cottonQty" min="0" placeholder="10" />
+                                </div>
+                            </div>
+                            <div id="fleeceContainer" class="material">
+                                <div class="form-check form-switch">
+                                    <input
+                                        id="fleece"
+                                        class="form-check-input formfield fabric"
+                                        type="checkbox"
+                                        fmd-desc='Fleece (<i class="fa-solid fa-crown"></i>)'
+                                        fmd-prem="0.25"
+                                        role="switch"
+                                        name="fleece"
+                                    />
+                                    <label class="form-check-label" for="fleece"
+                                        >Fleece
+                                        <button
+                                            type="button"
+                                            class="btn"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-html="true"
+                                            data-bs-title="$0.25 per thousand stitches"
+                                        >
+                                            <i class="fa-solid fa-crown"></i>
+                                        </button>
+                                    </label>
+                                </div>
+                                <div id="fleeceQtyContainer" class="qty-container">
+                                    <label class="form-label fabric-qty-label" for="fleeceQty">Quantity Needed:</label>
+                                    <input class="form-control formfield qty" type="number" name="fleeceQty" id="fleeceQty" min="0" placeholder="10" />
+                                </div>
+                            </div>
+                            <div id="towelsContainer" class="material">
+                                <div class="form-check form-switch">
+                                    <input
+                                        id="towels"
+                                        class="form-check-input formfield fabric"
+                                        type="checkbox"
+                                        fmd-desc='Towels (<i class="fa-solid fa-crown"></i>)'
+                                        fmd-prem="0.25"
+                                        role="switch"
+                                        name="towels"
+                                    />
+                                    <label class="form-check-label" for="towels"
+                                        >Towels/Blankets
+                                        <button
+                                            type="button"
+                                            class="btn"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-html="true"
+                                            data-bs-title="$0.25 per thousand stitches"
+                                        >
+                                            <i class="fa-solid fa-crown"></i>
+                                        </button>
+                                    </label>
+                                </div>
+                                <div id="towelsQtyContainer" class="qty-container">
+                                    <label class="form-label fabric-qty-label" for="towelsQty">Quantity Needed:</label>
+                                    <input class="form-control formfield qty" type="number" name="towelsQty" id="towelsQty" min="0" placeholder="10" />
+                                </div>
+                            </div>
+                            <div id="bagsContainer" class="material">
+                                <div class="form-check form-switch">
+                                    <input
+                                        id="bags"
+                                        class="form-check-input formfield fabric"
+                                        type="checkbox"
+                                        fmd-desc='Bags (<i class="fa-solid fa-crown"></i>)'
+                                        fmd-prem="0.25"
+                                        role="switch"
+                                        name="bags"
+                                    />
+                                    <label class="form-check-label" for="bags"
+                                        >Bags
+                                        <button
+                                            type="button"
+                                            class="btn"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-html="true"
+                                            data-bs-title="$0.25 per thousand stitches"
+                                        >
+                                            <i class="fa-solid fa-crown"></i>
+                                        </button>
+                                    </label>
+                                </div>
+                                <div id="bagsQtyContainer" class="qty-container">
+                                    <label class="form-label fabric-qty-label" for="bagsQty">Quantity Needed:</label>
+                                    <input class="form-control formfield qty" type="number" name="bagsQty" id="bagsQty" min="0" placeholder="10" />
+                                </div>
+                            </div>
+                            <div id="sherpaContainer" class="material">
+                                <div class="form-check form-switch">
+                                    <input
+                                        id="sherpa"
+                                        class="form-check-input formfield fabric"
+                                        type="checkbox"
+                                        fmd-desc='Sherpa (<i class="fa-solid fa-crown"></i>)'
+                                        fmd-prem="0.25"
+                                        role="switch"
+                                        name="sherpa"
+                                    />
+                                    <label class="form-check-label" for="sherpa"
+                                        >Sherpa
+                                        <button
+                                            type="button"
+                                            class="btn"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-html="true"
+                                            data-bs-title="$0.25 per thousand stitches"
+                                        >
+                                            <i class="fa-solid fa-crown"></i>
+                                        </button>
+                                    </label>
+                                </div>
+                                <div id="sherpaQtyContainer" class="qty-container">
+                                    <label class="form-label fabric-qty-label" for="sherpaQty">Quantity Needed:</label>
+                                    <input class="form-control formfield qty" type="number" name="sherpaQty" id="sherpaQty" min="0" placeholder="10" />
+                                </div>
+                            </div>
+                            <div id="jacketsContainer" class="material">
+                                <div class="form-check form-switch">
+                                    <input
+                                        id="jackets"
+                                        class="form-check-input formfield fabric"
+                                        type="checkbox"
+                                        fmd-desc='Jackets (<i class="fa-solid fa-crown"></i>)'
+                                        fmd-prem="0.25"
+                                        role="switch"
+                                        name="jackets"
+                                    />
+                                    <label class="form-check-label" for="jackets"
+                                        >Jackets
+                                        <button
+                                            type="button"
+                                            class="btn"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-html="true"
+                                            data-bs-title="$0.25 per thousand stitches"
+                                        >
+                                            <i class="fa-solid fa-crown"></i>
+                                        </button>
+                                    </label>
+                                </div>
+                                <div id="jacketsQtyContainer" class="qty-container">
+                                    <label class="form-label fabric-qty-label" for="jacketsQty">Quantity Needed:</label>
+                                    <input class="form-control formfield qty" type="number" name="jacketsQty" id="jacketsQty" min="0" placeholder="10" />
+                                </div>
+                            </div>
+                            <div id="leatherContainer" class="material">
+                                <div class="form-check form-switch">
+                                    <input
+                                        id="leather"
+                                        class="form-check-input formfield fabric"
+                                        type="checkbox"
+                                        fmd-desc='Leather (<i class="fa-solid fa-crown"></i>)'
+                                        fmd-prem="0.5"
+                                        role="switch"
+                                        name="leather"
+                                    />
+                                    <label class="form-check-label" for="leather"
+                                        >Leather
+                                        <button
+                                            type="button"
+                                            class="btn"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-html="true"
+                                            data-bs-title="$0.50 per thousand stitches"
+                                        >
+                                            <i class="fa-solid fa-crown"></i>
+                                        </button>
+                                    </label>
+                                </div>
+                                <div id="leatherQtyContainer" class="qty-container">
+                                    <label class="form-label fabric-qty-label" for="leatherQty">Quantity Needed:</label>
+                                    <input class="form-control formfield qty" type="number" name="leatherQty" id="leatherQty" min="0" placeholder="10" />
+                                </div>
+                            </div>
+                            <div id="capsContainer" class="material">
+                                <div class="form-check form-switch">
+                                    <input
+                                        id="caps"
+                                        class="form-check-input formfield fabric"
+                                        type="checkbox"
+                                        fmd-desc='Caps (<i class="fa-solid fa-crown"></i>)'
+                                        fmd-prem="0.25"
+                                        role="switch"
+                                        name="caps"
+                                    />
+                                    <label class="form-check-label" for="caps"
+                                        >Caps/Visors
+                                        <button
+                                            type="button"
+                                            class="btn"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-html="true"
+                                            data-bs-title="$0.25 per thousand stitches"
+                                        >
+                                            <i class="fa-solid fa-crown"></i>
+                                        </button>
+                                    </label>
+                                </div>
+                                <div id="capsQtyContainer" class="qty-container">
+                                    <label class="form-label fabric-qty-label" for="capsQty">Quantity Needed:</label>
+                                    <input class="form-control formfield qty" type="number" name="capsQty" id="capsQty" min="0" placeholder="10" />
+                                </div>
+                            </div>
+                            <div id="performanceContainer" class="material">
+                                <div class="form-check form-switch">
+                                    <input
+                                        id="performance"
+                                        class="form-check-input formfield fabric"
+                                        type="checkbox"
+                                        fmd-desc='Performance (<i class="fa-solid fa-crown"></i>)'
+                                        fmd-prem="0.25"
+                                        role="switch"
+                                        name="performance"
+                                    />
+                                    <label class="form-check-label" for="performance"
+                                        >Performance Fabrics
+                                        <button
+                                            type="button"
+                                            class="btn"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-html="true"
+                                            data-bs-title="$0.25 per thousand stitches"
+                                        >
+                                            <i class="fa-solid fa-crown"></i>
+                                        </button>
+                                    </label>
+                                </div>
+                                <div id="performanceQtyContainer" class="qty-container">
+                                    <label class="form-label fabric-qty-label" for="performanceQty">Quantity Needed:</label>
+                                    <input class="form-control formfield qty" type="number" name="performanceQty" id="performanceQty" min="0" placeholder="10" />
+                                </div>
+                            </div>
+                            <div id="otherContainer" class="material">
+                                <div class="form-check form-switch">
+                                    <input
+                                        id="other"
+                                        class="form-check-input formfield fabric"
+                                        type="checkbox"
+                                        fmd-desc='Other (<i class="fa-solid fa-crown"></i>)'
+                                        fmd-prem="0.25"
+                                        role="switch"
+                                        name="other"
+                                    />
+                                    <label class="form-check-label" for="other"
+                                        >Other
+                                        <button
+                                            type="button"
+                                            class="btn"
+                                            data-bs-toggle="tooltip"
+                                            data-bs-placement="top"
+                                            data-bs-html="true"
+                                            data-bs-title='Unfortunately, we cannot provide an accurate estimate for unknown fabrics. Please complete the questions on the estimate generator, then click the "Submit" button and someone will contact you.'
+                                        >
+                                            <i class="fa-solid fa-crown"></i>
+                                        </button>
+                                    </label>
+                                </div>
+                                <div id="otherQtyContainer" class="qty-container other-qty-container">
+                                    <p class="hint-text">(please describe the item's fabric in the space provided)</p>
+                                    <textarea class="fabric-qty-label mb-3" name="otherDescription" id="otherDescription" fmd-prem="2.00" cols="40" rows="7"></textarea><br />
+                                    <div class="other-container">
+                                        <label class="form-label fabric-qty-label" for="otherQty">Quantity Needed:</label>
+                                        <input class="form-control formfield qty" type="number" name="otherQty" id="otherQty" min="0" placeholder="10" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="personalization-container p-3">
+                                <h5>
+                                    Personalization Charges
+                                    <button
+                                        type="button"
+                                        class="btn"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="top"
+                                        data-bs-html="true"
+                                        data-bs-title="This is meant for left chest designs with a max character height of 1/2 inch."
+                                    >
+                                        <i class="fa-solid fa-circle-question"></i>
+                                    </button>
+                                </h5>
+                                <p>We charge $4.00 per item for up to two lines and 15 characters each. Each additional character is $0.30 per character per item.</p>
+                                <div class="py-2">
+                                    <label class="form-label" for="personalizationOne">Line 1 <span id="charCountOne" class="small"></span></label>
+                                    <input
+                                        class="form-control formfield unique"
+                                        type="text"
+                                        fmd-desc="Personalization Line 1"
+                                        name="personalizationOne"
+                                        id="personalizationOne"
+                                        min="0"
+                                        placeholder="Mia Brown"
+                                    />
+                                </div>
+                                <div class="py-2">
+                                    <label class="form-label" for="personalizationTwo">Line 2 <span id="charCountTwo" class="small"></span></label>
+                                    <input
+                                        class="form-control formfield unique"
+                                        type="text"
+                                        fmd-desc="Personalization Line 2"
+                                        name="personalizationTwo"
+                                        id="personalizationTwo"
+                                        min="0"
+                                        placeholder="VP of Sales"
+                                    />
+                                </div>
+                                <div id="numOfCharsMessage" class="col-12 message"></div>
+                            </div>
+                            <div class="packaging-container p-3">
+                                <h5>Packaging and Project Speed Options</h5>
+                                <div class="py-2 form-check form-switch">
+                                    <input
+                                        id="polybag"
+                                        class="form-check-input formfield"
+                                        type="checkbox"
+                                        fmd-desc="Individual Folding & Polybagging"
+                                        role="switch"
+                                        name="polybag"
+                                    />
+                                    <label class="form-check-label" for="polybag"
+                                        >Individual Folding & Polybagging
+                                        <button type="button" class="btn" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-html="true" data-bs-title="$0.50 per item">
+                                            <i class="fa-solid fa-circle-question"></i>
+                                        </button>
+                                    </label>
+                                </div>
+                                <div class="py-2">
+                                    <label for="projectSpeed">Item(s) needed within:</label>
+                                    <select id="projectSpeed" class="form-select formfield unique" fmd-desc="Requested speed">
+                                        <option value="Standard" fmd-rate="0">Standard: 7 - 10 Business Days (no fee)</option>
+                                        <option value="Rush" fmd-rate="0.2">Rush: 5-6 Business Days (20% fee applied to order total)</option>
+                                        <option value="Priority" fmd-rate="0.3">Priority: 3-4 Business Days (30% fee applied to order total)</option>
+                                        <option value="Expedited" fmd-rate="0.5">Expedited: 2 Business Days (50% fee applied to order total)</option>
+                                        <option value="Immediate" fmd-rate="1">Immediate: 1 Business Day (100% fee applied to order total)</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="calculation-container p-3">
+                                <button id="calculate" class="btn btn-info" type="button">Calculate</button>
+                                <button id="resetBtn" class="btn btn-info" type="button">Reset Entire Form</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="results" class="col-12 section">
+                        <div class="row">
+                            <div class="col-12 col-sm-6 header logo mt-3 mb-5 my-sm-0">
+                                <img src="https://i0.wp.com/firemadedesigns.com/wp-content/uploads/2022/05/FMDLogo_wide.png?fit=1781%2C1030&ssl=1" alt="Fire Made Designs LLC" />
+                            </div>
+                            <div class="col-12 col-sm-6 header business-info">
+                                <p class="m-0">Fire Made Designs LLC</p>
+                                <p class="m-0">224 Charles Avenue</p>
+                                <p class="m-0">Boardman, Ohio 44512</p>
+                                <a href="tel:+13304069831">(330) 406-9831</a>
+                                <a href="mailto:info@firemadedesigns.com">info@firemadedesigns.com</a>
+                            </div>
+                            <div class="col-12 title my-5">
+                                <p class="text m-0 py-4 px-5">ESTIMATE</p>
+                            </div>
+                            <div class="col-12" id="estimateRefs">
+                                <p class="m-0"><strong>Estimate generated on: </strong><span id="todaysDate"></span></p>
+                                <p class="m-0"><strong>Estimate generated on: </strong><span id="expirationDate"></span></p>
+                                <p class="m-0"><strong>Reference Number: </strong><span id="estimateRefNumber"></span></p>
+                                <p class="m-0 grandTotalLine">
+                                    <strong>Total: </strong><span id="estimateGrandTotal"></span>
+                                    <button
+                                        type="button"
+                                        class="btn tooltips"
+                                        data-bs-toggle="tooltip"
+                                        data-bs-placement="top"
+                                        data-bs-html="true"
+                                        data-bs-title="Estimate total does not include federal, state, and/or applicable taxes. Final order total may differ from estimate total."
+                                    >
+                                        <i class="fa-solid fa-circle-question"></i>
+                                    </button>
+                                </p>
+                            </div>
+                            <div class="col-12 results-table">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Service</th>
+                                            <th scope="col">Cost</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tableBody">
+                                        <tr>
+                                            <th scope="row">Digitizing</th>
+                                            <td>$30.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="p-only col-12">
+                            <p class="fine-print">
+                                <strong>Please note: </strong>Any cost provided by this generator is an estimate and is not guaranteed to be the final cost of the project. For a
+                                FREE in-depth estimate, please contact us at <a href="mailto:info@firemadedesigns.com">info@firemadedesigns.com</a> and attach a copy of this
+                                estimate.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-12 section p-none">
+                        <h5>Would you like to submit a copy of this estimate to Fire Made Designs for a FREE in-depth estimate?</h5>
+                        <div class="row pb-3">
+                            <div class="form-group col-4">
+                                <label class="form-label" for="name">Name</label>
+                                <input class="form-control formfield" fmd-desc="name" type="text" name="name" id="name" />
+                            </div>
+                            <div class="form-group col-4">
+                                <label class="form-label" for="email">Email address</label>
+                                <input class="form-control formfield" fmd-desc="email" type="email" name="email" id="email" />
+                            </div>
+                            <div class="form-group col-4">
+                                <label class="form-label" for="phone">Phone number</label>
+                                <input class="form-control formfield" fmd-desc="phone" type="tel" name="phone" id="phone" />
+                            </div>
+                        </div>
+                        <button id="submit" class="btn primary-btn" type="button">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script>
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+            const tooltipList = [...tooltipTriggerList].map((tooltipTriggerEl) => new bootstrap.Tooltip(tooltipTriggerEl));
+
+            // ----------------------------------------------------- //
+            // ------------------- DEFAULT VALUES ------------------ //
+            // ----------------------------------------------------- //
+
+            let totalItems = 0;
+            let pricePerThousand = 1;
+            let costOfColors = 0;
+            let digitizingFee = 0;
+            let editCost = 0;
+            let discount = 0;
+            let lineCost = 0;
+            // if charCount > 15, lineCost = 4 + (charCount * 0.3);
+            let bagItRate = 0.5;
+            let bagItTotal = bagItRate * totalItems;
+            let projectUpcharge = 0;
+            let totalCost = 0;
+            // if rush, projectUpcharge = 1.2; if priority, projectUpcharge = 1.3; if expedited, projectUpcharge = 1.5; if immediate, projectUpcharge = 2;
+
+            // ----------------------------------------------------- //
+            // -------------------- FORM VALUES -------------------- //
+            // ----------------------------------------------------- //
+
+            const projectInfoForm = document.forms["projectInfo"];
+
+            let checkboxes = document.querySelectorAll(".form-check-input");
+            // let formAnswers = {};
+            let formFields = document.querySelectorAll(".formfield");
+
+            const calculateBtn = document.getElementById("calculate");
+
+            // ----- Design Info ----- //
+            // const customerProvidedYes = document.getElementById("customerProvidedYes");
+            const customerProvided = document.getElementById("customerProvidedYes");
+
+            const convertDesignSizeBtn = document.getElementById("convertDesignSize");
+            const stitchCount = document.getElementById("stitchCount");
+            const designSize = document.getElementById("designSize");
+            const stitchCountMessage = document.getElementById("stitchCountMessage");
+
+            const numOfColors = document.getElementById("numOfColors");
+            const numOfColorsMessage = document.getElementById("numOfColorsMessage");
+
+            const digitizingRequired = document.getElementById("digitizingYes");
+            const editingRequired = document.getElementById("editingNeeded");
+            const numOfHours = document.getElementById("editingHours");
+
+            // ----- Fabrics ----- //
+            let cottonTotal, fleeceTotal, towelsTotal, bagsTotal, sherpaTotal, jacketTotal, leatherTotal, capsTotal, performanceTotal, otherTotal;
+            const cotton = document.getElementById("cotton");
+            const cottonQty = document.getElementById("cottonQty");
+            const fleece = document.getElementById("fleece");
+            const fleeceQty = document.getElementById("fleeceQty");
+            const towels = document.getElementById("towels");
+            const towelsQty = document.getElementById("towelsQty");
+            const bags = document.getElementById("bags");
+            const bagsQty = document.getElementById("bagsQty");
+            const sherpa = document.getElementById("sherpa");
+            const sherpaQty = document.getElementById("sherpaQty");
+            const jackets = document.getElementById("jackets");
+            const jacketsQty = document.getElementById("jacketsQty");
+            const leather = document.getElementById("leather");
+            const leatherQty = document.getElementById("leatherQty");
+            const caps = document.getElementById("caps");
+            const capsQty = document.getElementById("capsQty");
+            const performance = document.getElementById("performance");
+            const performanceQty = document.getElementById("performanceQty");
+            const other = document.getElementById("other");
+            const otherQty = document.getElementById("otherQty");
+            let allFabricQtys = {};
+
+            // ----- Personalization & Shipping ----- //
+            const personalizationOne = document.getElementById("personalizationOne");
+            const personalizationTwo = document.getElementById("personalizationTwo");
+            const shippingSpeed = document.getElementById("projectSpeed");
+
+            // ----- Estiamte Display ----- //
+            const tableBody = document.getElementById("tableBody");
+            // let allData = [];
+            let allData = {};
+            let forExport = {};
+            let grandTotalArray = [];
+
+            // ----------------------------------------------------- //
+            // -------------- FUNCTIONS TO GATHER DATA ------------- //
+            // ----------------------------------------------------- //
+
+            function convertToInches() {
+                let stitchCountVal = Number(stitchCount.value);
+                let withinLimits = stitchCountVal >= 10000 && stitchCountVal <= 32000;
+                if (stitchCountVal !== "" && withinLimits) {
+                    let convertedVal = stitchCountVal / 2222.23;
+                    designSize.value = (Math.round(convertedVal * 100) / 100).toFixed(2);
+                } else {
+                    designSize.value = "";
+                    stitchCount.value = "";
+                    stitchCountMessage.classList.add("error");
+                    stitchCountMessage.innerHTML = "The minimum stitch count is 10000 with a maximum of 32000 for standard designs. Please enter a number between 10000 and 32000.";
+                    setTimeout(() => {
+                        stitchCountMessage.innerHTML = "";
+                        stitchCountMessage.classList.remove("error");
+                    }, 6500);
+                }
+            }
+
+            function convertToStitches() {
+                let designSizeVal = Number(designSize.value);
+                let withinLimits = designSizeVal >= 4.5 && designSizeVal <= 14;
+                if (designSizeVal === 4.5) {
+                    stitchCount.value = 10000;
+                } else if (designSizeVal !== "" && withinLimits) {
+                    let convertedVal = designSizeVal * 2222.23;
+                    stitchCount.value = (Math.ceil(convertedVal / 1000) * 1000).toFixed(0);
+                } else {
+                    stitchCount.value = "";
+                    designSize.value = "";
+                    stitchCountMessage.classList.add("error");
+                    stitchCountMessage.innerHTML = 'The minimum design size is 4.5" and the maximum is 14". Please enter a number between 4.5 and 14.';
+                    setTimeout(() => {
+                        stitchCountMessage.innerHTML = "";
+                        stitchCountMessage.classList.remove("error");
+                    }, 6500);
+                }
+            }
+
+            function verifyNumOfColors() {
+                let numOfColorsVal = numOfColors.value;
+                if (numOfColorsVal < 1) {
+                    numOfColorsMessage.innerHTML = "Please enter a number larger than 0";
+                    numOfColorsMessage.classList.add("error");
+                    setTimeout(() => {
+                        numOfColorsMessage.innerHTML = "";
+                        numOfColorsMessage.classList.remove("error");
+                    }, 6500);
+                } else if (numOfColorsVal > 10 && numOfColorsVal <= 15) {
+                    costOfColors = (numOfColorsVal - 10) * 3;
+                    numOfColorsMessage.innerHTML = "The first 10 colors are included at no additional charge. Each additional color (up to a max of 15) is $3.00 per color.";
+                    numOfColorsMessage.classList.add("warning");
+                    setTimeout(() => {
+                        numOfColorsMessage.innerHTML = "";
+                        numOfColorsMessage.classList.remove("warning");
+                    }, 6500);
+                } else if (numOfColorsVal > 15) {
+                    numOfColorsMessage.innerHTML = "Please enter a number under 15.";
+                    numOfColorsMessage.classList.add("error");
+                    setTimeout(() => {
+                        numOfColorsMessage.innerHTML = "";
+                        numOfColorsMessage.classList.remove("error");
+                    }, 6500);
+                }
+            }
+
+            function verifyNumOfChars(lineNumber) {
+                let personlizationVar = document.getElementById(`personalization${lineNumber}`);
+                let charCountVar = document.getElementById(`charCount${lineNumber}`);
+                let numOfChars = personlizationVar.value.length;
+                if (numOfChars > 0) {
+                    charCountVar.innerHTML = `(character count: ${numOfChars})`;
+                }
+
+                if (numOfChars > 15) {
+                    lineCost = 4 + (numOfChars - 15) * 0.3;
+                    numOfCharsMessage.innerHTML = "The first 15 characters of each line are included at no additional charge. Each additional character is $0.30 per character.";
+                    numOfCharsMessage.classList.add("warning");
+                    setTimeout(() => {
+                        numOfCharsMessage.innerHTML = "";
+                        numOfCharsMessage.classList.remove("warning");
+                    }, 6500);
+                }
+            }
+
+            checkboxes.forEach((checkbox) => {
+                checkbox.addEventListener("change", function () {
+                    let fieldToDisplay = document.getElementById(`${this.id}QtyContainer`);
+                    if (fieldToDisplay !== null) {
+                        fieldToDisplay.classList.toggle("display");
+                    }
+                });
+            });
+
+            stitchCount.addEventListener("change", convertToInches);
+            designSize.addEventListener("change", convertToStitches);
+            numOfColors.addEventListener("change", verifyNumOfColors);
+            numOfColors.addEventListener("input", verifyNumOfColors);
+            personalizationOne.addEventListener("change", function () {
+                verifyNumOfChars("One");
+            });
+            personalizationOne.addEventListener("input", function () {
+                verifyNumOfChars("One");
+            });
+            personalizationTwo.addEventListener("change", function () {
+                verifyNumOfChars("Two");
+            });
+            personalizationTwo.addEventListener("input", function () {
+                verifyNumOfChars("Two");
+            });
+
+            // ----------------------------------------------------- //
+            // -------------- FUNCTIONS TO DISPLAY DATA ------------- //
+            // ----------------------------------------------------- //
+
+            const formatter = new Intl.NumberFormat("en-US", {
+                style: "currency",
+                currency: "USD",
+
+                // These options are needed to round to whole numbers if that's what you want.
+                //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+                //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+            });
+
+            function createServiceTable(element) {
+                let tableRow = document.createElement("tr");
+                tableRow.id = `serviceItem-${element.index}`;
+
+                let serviceName = document.createElement("td");
+                serviceName.innerHTML = element[0];
+
+                let serviceCost = document.createElement("td");
+                serviceCost.innerHTML = element[1];
+
+                tableRow.appendChild(serviceName);
+                tableRow.appendChild(serviceCost);
+                tableBody.appendChild(tableRow);
+
+                // PULL IN CUSTOM ATTRIBUTES
+                // FROM HTML AND OPTIMIZE
+                // FUNCTIONS BASED ON THEM
+            }
+
+            function createPrintPreview(estimateTotal) {
+                let todaysDate = new Date();
+                document.getElementById("todaysDate").innerHTML = todaysDate.toLocaleDateString();
+                let expirationDate = new Date(todaysDate.setDate(todaysDate.getDate() + 30)).toLocaleDateString();
+                document.getElementById("expirationDate").innerHTML = expirationDate;
+                let refNumber = Math.random().toString(26).toUpperCase().slice(2);
+                document.getElementById("estimateRefNumber").innerHTML = refNumber;
+                forExport["refNumber"] = refNumber;
+                document.getElementById("estimateGrandTotal").innerHTML = formatter.format(estimateTotal);
+
+                let dataToDisplay = Object.entries(allData);
+
+                tableBody.innerHTML = "";
+                dataToDisplay.forEach((element) => {
+                    createServiceTable(element);
+                });
+            }
+
+            // ----------------------------------------------------- //
+            // ------------ FUNCTIONS TO CALCULATE COST ------------ //
+            // ----------------------------------------------------- //
+
+            function sum(array) {
+                return array.reduce((subtotal, item) => subtotal + item, 0);
+            }
+
+            function calculateDigitizingFee() {
+                let designSizeVal = Number(designSize.value);
+                if (designSizeVal <= 10) {
+                    digitizingFee = 30;
+                } else if (designSizeVal > 10) {
+                    digitizingFee = 100;
+                    // Please contact us for an accurate estimate
+                }
+                return digitizingFee;
+            }
+
+            function calculateSingleFabricTotal(fabricQty, fabricUpcharge) {
+                discount = fabricQty > 10 ? 0.15 : 0;
+                let fabricPricePerThousand = fabricUpcharge - fabricUpcharge * discount;
+                let fabricTotal = fabricQty * fabricPricePerThousand;
+                return fabricTotal;
+            }
+
+            function calculateFabricTotals(fabric, fabricQty) {
+                let fabricTotal = 0;
+                allFabricQtys[fabric.getAttribute("fmd-desc")] = fabricQty;
+                let fabricUpcharge = fabric.getAttribute("fmd-prem");
+                if (fabric.checked) {
+                    fabricTotal = calculateSingleFabricTotal(Number(fabricQty), Number(fabricUpcharge));
+                }
+                return fabricTotal;
+            }
+
+            function calculateColorCost(numberOfColors) {
+                var numberOfExtraColors = numberOfColors - 10;
+                if (numberOfExtraColors >= 1 && numberOfExtraColors <= 5) {
+                    return 3 * numberOfExtraColors;
+                }
+                return 0;
+            }
+
+            function calculateTotals() {
+                pricePerThousand = customerProvided.checked ? 1.25 : 1;
+                let stitchCost = 0;
+                if (allData["Total stitches"] !== undefined) {
+                    stitchCost = pricePerThousand * (Number(allData["Total stitches"]) / 1000);
+                } else {
+                    stitchCost = pricePerThousand * (Number(allData["Design size (in inches)"]) / 1000);
+                }
+                if (editingRequired.checked) {
+                    editCost = Number(numOfHours.value) * 25;
+                    grandTotalArray.push(editCost);
+                    allData["Design editing"] = formatter.format(editCost);
+                    forExport["designEditing"] = editCost;
+                } else {
+                    delete allData["Design editing"];
+                    delete forExport["digitizing"];
+                }
+                if (digitizingRequired.checked) {
+                    let digitizingFee = calculateDigitizingFee();
+                    allData["Design digitizing"] = formatter.format(digitizingFee);
+                    forExport["digitizing"] = digitizingFee;
+                }
+                let fabrics = document.querySelectorAll(".fabric");
+                let fabricTotals = [];
+                let allFabricTotal = 0;
+                for (const fabric of fabrics) {
+                    if (fabric.checked) {
+                        let fabricId = fabric.getAttribute("id");
+                        let fabricQty = document.getElementById(`${fabricId}Qty`).value;
+                        totalItems = totalItems + Number(fabricQty);
+                        let fabricName = fabric.getAttribute("fmd-desc");
+                        let lineTotal = calculateFabricTotals(fabric, fabricQty);
+                        if (lineTotal > 0) {
+                            fabricTotals.push(lineTotal);
+                            allData[fabricName] = formatter.format(lineTotal);
+                            forExport[fabricId] = lineTotal;
+                        }
+                    }
+                    allFabricTotal = sum(fabricTotals);
+                }
+                let costOfColors = 0;
+                costOfColors = calculateColorCost(Number(numOfColors.value));
+
+                if (digitizingFee !== 0) {
+                    grandTotalArray.push(digitizingFee);
+                }
+                if (stitchCost !== 0) {
+                    grandTotalArray.push(stitchCost);
+                    allData["Stitch cost"] = formatter.format(stitchCost);
+                    forExport["stitchCost"] = stitchCost;
+                }
+                if (costOfColors !== 0) {
+                    grandTotalArray.push(costOfColors);
+                    if (costOfColors > 0) {
+                        allData["Cost for additional colors"] = formatter.format(costOfColors);
+                        forExport["additionalColors"] = costOfColors;
+                    } else {
+                        allData["Number of colors"] = numOfColors.value;
+                        forExport["numberOfColors"] = numOfColors.value;
+                    }
+                }
+                if (allFabricTotal !== 0) {
+                    grandTotalArray.push(allFabricTotal);
+                    // allData["Total of all fabrics"] = formatter.format(allFabricTotal);
+                }
+
+                let personalizationTotal = 0;
+
+                if (personalizationOne.value.length > 0 || personalizationTwo.value.length > 0) {
+                    let lineOneCount = personalizationOne.value.length;
+                    let lineTwoCount = personalizationTwo.value.length;
+                    let lineOneOverage = 0;
+                    let lineTwoOverage = 0;
+                    if (lineOneCount > 15) {
+                        lineOneOverage = lineOneCount - 15;
+                    }
+                    if (lineTwoCount > 15) {
+                        lineTwoOverage = lineTwoCount - 15;
+                    }
+                    personalizationTotal = (4 + (lineOneOverage + lineTwoOverage) * 0.3) * totalItems;
+                    if (personalizationTotal > 0) {
+                        allData["Personalization Total"] = formatter.format(personalizationTotal);
+                        forExport["personalization"] = personalizationTotal;
+                        grandTotalArray.push(personalizationTotal);
+                    }
+                }
+
+                let estimateTotal = sum(grandTotalArray);
+                return estimateTotal;
+            }
+
+            function calculateShipping(subtotal) {
+                let shippingSpeedVal = shippingSpeed.options[shippingSpeed.selectedIndex].getAttribute("fmd-rate");
+                let grandTotal = 0;
+                if (shippingSpeedVal === 0) {
+                    createPrintPreview(subtotal);
+                } else {
+                    grandTotal = subtotal + subtotal * shippingSpeedVal;
+                    createPrintPreview(grandTotal);
+                }
+            }
+
+            function calculateBagging(subtotal) {
+                let tempQtyArray = [];
+                for (const [key, value] of Object.entries(allFabricQtys)) {
+                    tempQtyArray.push(Number(value));
+                }
+                let baggingTotal = sum(tempQtyArray) * 0.5;
+                allData["Folding & Polybagging"] = formatter.format(baggingTotal);
+                forExport["bagging"] = baggingTotal;
+                grandTotalArray.push(baggingTotal);
+                subtotal = subtotal + baggingTotal;
+                calculateShipping(subtotal);
+            }
+
+            function saveFormData() {
+                formFields.forEach((element) => {
+                    let elementName = element.getAttribute("fmd-desc");
+                    if (element.value !== "" && element.value !== "on") {
+                        if (elementName !== null) {
+                            allData[elementName] = element.value;
+                            forExport[element.getAttribute("id")] = element.value;
+                        }
+                    }
+                });
+                let subtotal = calculateTotals();
+                let polybagging = document.getElementById("polybag");
+                if (polybagging.checked) {
+                    calculateBagging(subtotal);
+                } else {
+                    calculateShipping(subtotal);
+                }
+                sessionStorage.setItem("Project Information", JSON.stringify(allData));
+                sessionStorage.setItem("ForExport", JSON.stringify(forExport));
+            }
+
+            function clearTotals() {
+                totalItems = 0;
+                allData = {};
+                grandTotalArray = [];
+                forExport = {};
+                sessionStorage.setItem("Project Information", JSON.stringify(allData));
+            }
+
+            calculateBtn.addEventListener("click", (e) => {
+                clearTotals();
+                e.preventDefault();
+                saveFormData();
+            });
+
+            // ----------------------------------------------------- //
+            // ------------- FUNCTIONS TO CONTROL FORM ------------- //
+            // ----------------------------------------------------- //
+
+            const resetBtn = document.getElementById("resetBtn");
+
+            function resetForm() {
+                location.reload();
+            }
+
+            resetBtn.addEventListener("click", () => {
+                resetForm();
+            });
+        </script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+            integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+            crossorigin="anonymous"
+        ></script>
+        <script src="app.js"></script>
+        <script></script>
+    </body>
+</html>
